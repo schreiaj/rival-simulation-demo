@@ -52,6 +52,10 @@ class SimulationNode(BaseNode):
             self._sim_rate = config["sim_rate"]
         if config and "urdf_path" in config:
             self._urdf_path = config["urdf_path"]
+        if config and "update_rate" in config:
+            self._update_rate = config["update_rate"]
+        
+        self.hz = 1/self._update_rate
 
         # Register signal handlers
         signal.signal(signal.SIGINT, self._signal_handler)
@@ -237,7 +241,6 @@ class SimulationNode(BaseNode):
                     )
                 
             
-            time.sleep(1/self._update_rate)
         except Exception as e:
             print(f"Error in step: {e}")
             import traceback
