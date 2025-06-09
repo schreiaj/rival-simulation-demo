@@ -1,0 +1,15 @@
+session:
+  mode: peer  # Mesh network
+
+nodes:
+  
+  - type: nodes.joint_state_test.JointStateTest
+    params:
+      robot_id: "simbot"
+      group: "simulation"
+      hz: 0.25
+
+  - type: nodes.sim.SimulationNode
+    params:
+      robot_id: "simbot"
+      headless: false
